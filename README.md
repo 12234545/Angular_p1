@@ -1,4 +1,4 @@
-# Angular_p1
+# Angular_p1 branch master
 Mini Application Angular - TodoList
 <h2>Description du projet</h2>
   Ce projet est une application Angular simple conçue pour les débutants qui souhaitent se familiariser avec les fonctionnalités fondamentales d'Angular. L'application comporte deux fonctionnalités principales : une page d'accueil avec un compteur interactif et une page de gestion de tâches (todos) qui permet d'afficher, filtrer et marquer les tâches comme terminées.
