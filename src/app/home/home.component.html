@@ -1,0 +1,6 @@
+<app-greeting [message]="Homemessage()" />
+<app-counter />
+<div class="home">
+<p> Everything you type here will be shown in the console in real time. Feel free to check it if you want.</p>
+<input type="text" (keyup)="KeyUpHandler($event)" placeholder="Type something..." />
+</div>
