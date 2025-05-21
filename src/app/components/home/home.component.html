@@ -1,0 +1,286 @@
+<div class="accueil-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="pictures/logo.png" alt="Logo KLIK2LEARN">
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/accueil" class="active">Accueil</a></li>
+        <li><a routerLink="/cours">Cours</a></li>
+        <li><a routerLink="/etablissements">Les établissements</a></li>
+        <li><a routerLink="/apropos">À propos de nous</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a routerLink="/login" class="btn-login">Se connecter</a>
+      <a routerLink="/register" class="btn-register">S'inscrire</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1><span class="highlight">FORMATION</span><br>INSTITUTIONNELLE</h1>
+        <p>CLIK2LEARN est une plateforme innovante qui vous forme de manière plus interactive.</p>
+        <div class="hero-buttons">
+          <a routerLink="/register" class="btn-primary">S'inscrire</a>
+          <a routerLink="/demo" class="btn-outlined">
+            <span class="play-icon">▶</span>
+            Regardez en action !
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="pictures/F3.png" alt="Étudiante">
+        <div class="badge students">
+          <span class="badge-icon">
+            <i class="fa-solid fa-calendar-days" style="color: #1982d2;"></i>
+          </span>
+          <span class="badge-content">
+            <span class="number">250k</span>
+            <span class="label">Assisted Student</span>
+          </span>
+        </div>
+        <div class="badge notification">
+          <span class="badge-icon">
+            <i class="fa-solid fa-certificate" style="color: #ee8711;"></i>
+          </span>
+          <span class="badge-content">
+            <strong>Congratulations</strong><br>
+            Your admission completed
+          </span>
+        </div>
+        <div class="badge class-info">
+          <div class="user-info">
+            <img src="pictures/F3.png" class="avatar" alt="Teacher">
+            <span>User Experience Class</span>
+          </div>
+          <div class="class-time">Today at 12:00 PM</div>
+          <a href="#" class="join-btn">Join Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Platform Section -->
+  <section class="about-section">
+    <h2>Qu'est-ce que notre plateforme <span class="highlight">CLIK2LEARN</span> ?</h2>
+    <p class="platform-desc">
+      Notre plateforme permet aux éducateurs de concevoir et gérer des cours en ligne, de stocker les supports pédagogiques, de gérer les devoirs, quiz et examens, de suivre les échéances et d'attribuer des notes, le tout sur un seul outil!
+    </p>
+
+    <div class="user-types">
+      <div class="user-card">
+        <div class="card-image-container">
+          <img src="pictures/ensg.jpg" alt="Formateur">
+        </div>
+        <h3>Pour les formateurs</h3>
+        <a href="#" class="btn-action">Créer une classe dès maintenant →</a>
+      </div>
+      <div class="user-card">
+        <div class="card-image-container">
+          <img src="pictures/etude.jpeg" alt="Apprenants">
+        </div>
+        <h3>Pour les apprenants</h3>
+        <a href="#" class="btn-action">Entrer un code d'accès →</a>
+      </div>
+    </div>
+  </section>
+
+   <!-- Courses Section -->
+   <section class="courses-section">
+    <div class="section-header">
+      <h2>Nos Cours</h2>
+      <a href="#" class="see-all">See all</a>
+    </div>
+    <div class="courses-container">
+      <!-- Utilisation du *ngFor avec un tableau de cours -->
+      <div class="course-card" *ngFor="let course of courses">
+        <div class="course-image">
+          <img [src]="course.image" alt="{{course.title}}">
+          <div class="course-level">{{course.level}}</div>
+        </div>
+        <div class="course-content">
+          <h3>{{course.title}}</h3>
+          <p>{{course.description}}</p>
+          <div class="course-footer">
+            <div class="instructor">
+              <img [src]="course.instructor.image" alt="{{course.instructor.name}}">
+              <span>{{course.instructor.name}}</span>
+            </div>
+            <div class="course-price">
+              <span class="original-price">{{course.originalPrice}}</span>
+              <span class="discount-price">{{course.discountPrice}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners-section">
+    <h2>Nos Partenaires</h2>
+    <div class="partners-logos">
+      <img src="pictures/MOOC.jpeg" alt="MOOC">
+      <img src="pictures/udemy.png" alt="Udemy">
+      <img src="pictures/coursera.png" alt="Coursera">
+      <img src="pictures/edx.png" alt="edX">
+
+    </div>
+  </section>
+
+
+  <!-- Platform Features Section -->
+  <section class="features-section">
+    <div class="features-content">
+      <div class="features-image">
+        <img src="pictures/classe.JPG" alt="Classroom">
+        <div class="decoration-rect"></div>
+      </div>
+      <div class="features-text">
+        <h2>Tout ce que vous faites en classe, vous pouvez le faire sur notre plateforme <span class="highlight">KLIK2LEARN</span>.</h2>
+        <p>Notre solution aide les écoles traditionnelles et en ligne à gérer les plannings, la présence, les pointages et les salles de classe virtuelles via un système cloud sécurisé.</p>
+        <a href="#" class="btn-text-link">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+
+   <!-- Institutions Section -->
+   <section class="institutions-section">
+    <h2>Les Établissements</h2>
+    <div class="institutions-container">
+      <div class="institution-logo" *ngFor="let i of [1, 2, 3, 4, 5]">
+        <img src="pictures/etabs/{{i}}.png" alt="Institution">
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stats Section -->
+  <section class="success-section">
+    <h2>Notre succès</h2>
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">15K+</div>
+        <div class="stat-label">Étudiants</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">75%</div>
+        <div class="stat-label">Succès total</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">35</div>
+        <div class="stat-label">Principales questions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">26</div>
+        <div class="stat-label">Experts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+    </div>
+
+    <div class="impact-section">
+      <h3>Notre impact</h3>
+      <p>Accompagner les apprenants dans la réussite de leurs objectifs éducatifs et professionnels.</p>
+
+      <div class="services">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h4>Certificats de formation</h4>
+          <p>Les étudiants reçoivent automatiquement des certificats personnalisés à la fin de chaque formation.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h4>Planification des sessions de formation</h4>
+          <p>Notre système interactif permet de planifier les sessions sur un ou plusieurs jours.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Suivi des utilisateurs</h4>
+          <p>Génération automatique de feedbacks et évaluations après chaque formation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonial-section">
+    <div class="testimonial-content">
+      <div class="testimonial-text">
+        <h3>Que disent-ils ?</h3>
+        <p>CLICK2LEARN a reçu plus de 100 000 évaluations positives de la part de nos utilisateurs dans le monde entier. Certains étudiants et enseignants ont été grandement aidés par Skilline.</p>
+        <p>Et vous ? Donnez aussi votre avis.</p>
+        <a href="#" class="btn-outline">Écrire votre évaluation →</a>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          "Merci beaucoup pour votre aide. C'est exactement ce que je recherchais. Vous ne le regretterez pas. Cela m'a fait vraiment gagner du temps et des efforts. TGIT, est exactement ce qui manquait à notre entreprise."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-name">Gloria Rose</div>
+          <div class="author-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>22 reviews in total</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-section">
+        <img src="pictures/footer.png" alt="CLICK2LEARN" class="footer-logo">
+        <div class="footer-tagline">
+          <span>FORMATION</span>
+          <span>INSTITUTIONNELLE</span>
+        </div>
+      </div>
+
+      <div class="newsletter-section">
+        <h3>Abonnez-vous pour recevoir notre newsletter.</h3>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre Email" class="email-input">
+          <button class="btn-subscribe">S'abonner</button>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Careers</a>
+        <span class="separator">|</span>
+        <a href="#">Privacy Policy</a>
+        <span class="separator">|</span>
+        <a href="#">Terms & Conditions</a>
+      </div>
+
+      <div class="copyright">
+        © 2025 Class Technologies Inc.
+      </div>
+    </div>
+  </footer>
+</div>

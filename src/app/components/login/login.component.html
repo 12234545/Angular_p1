@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-image">
+      <img src="pictures/login.jpeg" alt="Étudiant travaillant">
+    </div>
+    <div class="login-form">
+      <h2>Bienvenue sur CLIK2LEARN</h2>
+      <div class="button-group">
+        <button class="btn btn-primary"> Se connecter</button>
+        <button class="btn btn-outline" routerLink="/register">S'inscrire</button>
+      </div>
+      <p class="instruction-text">Connectez-vous pour accéder à votre tableau de bord d'apprentissage personnalisé.</p>
+
+      <form  (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" formControlName="username" id="username" placeholder="Entrez votre nom d'utilisateur" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <div class="password-input">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password" placeholder="Entrez votre mot de passe" class="form-control">
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" formControlName="rememberMe">
+            <label for="remember">Se souvenir de moi</label>
+          </div>
+          <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+      </form>
+    </div>
+  </div>
+</div>

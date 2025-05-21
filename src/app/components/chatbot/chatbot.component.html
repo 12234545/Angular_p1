@@ -1,0 +1,46 @@
+
+<div class="container">
+  <div class="cont2">
+    <p-button id="butt" [style]="{ background: '#17B6EE', border: 'none' }"><a routerLink="/home" style="text-decoration: none; color: white;"><span class="pi pi-arrow-left" style="font-size: 0.9rem; margin: 0"></span></a></p-button>
+    <h1>Formito ChatBot</h1>
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let msg of messages" [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
+      <div class="message-content">
+        <div *ngIf="msg.sender === 'bot'" class="avatar-container">
+          <p-avatar icon="pi pi-comment" [style]="{'background-color': '#17B6EE', 'color': '#ffffff', 'width': '30px', 'height': '30px'}"></p-avatar>
+        </div>
+        <div class="message-text">
+          <p>{{ msg.text }}</p>
+
+        </div>
+        <div *ngIf="msg.sender === 'user'" class="avatar-container">
+          <p-avatar icon="pi pi-user" [style]="{'background-color': '#ecb9e1', 'color': '#ffffff', 'width': '30px', 'height': '30px'}"></p-avatar>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="loading" class="bot-message">
+      <div class="message-content">
+        <div class="avatar-container">
+          <p-avatar icon="pi pi-comment" [style]="{'background-color': '#17B6EE', 'color': '#ffffff', 'width': '40px', 'height': '40px'}"></p-avatar>
+        </div>
+        <div class="message-text">
+          <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <div class="input-container">
+      <input type="text" pInputText [(ngModel)]="newMessage" placeholder="Tapez votre message ici..."
+             (keyup.enter)="sendMessage()" class="message-input" />
+      <button pButton class="send-button" icon="pi pi-send" [disabled]="loading" (click)="sendMessage()"></button>
+    </div>
+  </div>
+</div>
