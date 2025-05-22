@@ -25,5 +25,13 @@ export const routes: Routes = [{
   loadComponent: () =>{
     return import('./components/chatbot/chatbot.component').then(m => m.ChatbotComponent);
   }
+},
+
+{
+  path: 'full-chatbot',
+  loadComponent: () =>{
+    return import('./components/chatbot/full-chatbot/full-chatbot.component').then(m => m.FullChatbotComponent);
+  }
 }
+
 ];

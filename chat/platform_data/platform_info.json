@@ -1,0 +1,97 @@
+{
+    "name": "CLICK2LEARN",
+    "description": "Plateforme innovante de formation institutionnelle qui permet aux utilisateurs d'apprendre de manière interactive.",
+    "user_types": [
+        {
+            "type": "formateur",
+            "capabilities": [
+                "Concevoir et gérer des cours en ligne",
+                "Stocker les supports pédagogiques",
+                "Gérer les devoirs, quiz et examens",
+                "Suivre les échéances",
+                "Attribuer des notes",
+                "Créer des classes virtuelles"
+            ]
+        },
+        {
+            "type": "apprenant",
+            "capabilities": [
+                "Accéder aux cours via code d'accès",
+                "Participer aux sessions virtuelles",
+                "Recevoir des certificats à la fin des formations",
+                "Obtenir des feedbacks et évaluations"
+            ]
+        }
+    ],
+    "features": [
+        {
+            "name": "Gestion de cours",
+            "description": "Création et gestion complète des cours et des ressources pédagogiques"
+        },
+        {
+            "name": "Classes virtuelles",
+            "description": "Salles de classe virtuelles via un système cloud sécurisé"
+        },
+        {
+            "name": "Planification",
+            "description": "Système interactif pour planifier les sessions sur un ou plusieurs jours"
+        },
+        {
+            "name": "Certification",
+            "description": "Certificats personnalisés générés automatiquement à la fin de chaque formation"
+        },
+        {
+            "name": "Suivi et évaluation",
+            "description": "Génération automatique de feedbacks et évaluations après chaque formation"
+        }
+    ],
+    "navigation": {
+        "main_pages": [
+            {
+                "name": "Accueil",
+                "path": "/accueil",
+                "description": "Page principale avec présentation de la plateforme"
+            },
+            {
+                "name": "Cours",
+                "path": "/cours",
+                "description": "Catalogue de cours disponibles sur la plateforme"
+            },
+            {
+                "name": "Les établissements",
+                "path": "/etablissements",
+                "description": "Liste des établissements partenaires"
+            },
+            {
+                "name": "À propos de nous",
+                "path": "/apropos",
+                "description": "Information sur l'équipe et la mission de CLIK2LEARN"
+            }
+        ],
+        "auth_pages": [
+            {
+                "name": "Se connecter",
+                "path": "/login",
+                "description": "Page de connexion pour utilisateurs existants"
+            },
+            {
+                "name": "S'inscrire",
+                "path": "/register",
+                "description": "Page d'inscription pour nouveaux utilisateurs"
+            }
+        ]
+    },
+    "stats": {
+        "students": "250k",
+        "success_rate": "75%",
+        "major_questions": "35",
+        "experts": "26",
+        "years_experience": "16"
+    },
+    "partners": [
+        "MOOC",
+        "Udemy",
+        "Coursera",
+        "edX"
+    ]
+}

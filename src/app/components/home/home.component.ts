@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ChatbotComponent } from '../chatbot/chatbot.component';
+
 @Component({
   selector: 'app-home',
-  imports: [ NgFor , RouterLink ],
+  imports: [ NgFor , RouterLink , ChatbotComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -52,44 +54,5 @@ export class HomeComponent {
     }
   ];
 
-  // Mock data for categories
-  categories = [
-    { id: 1, name: 'UX/UI', imageUrl: 'assets/images/ux-ui.jpg' },
-    { id: 2, name: 'React', imageUrl: 'assets/images/react.jpg' },
-    { id: 3, name: 'PHP', imageUrl: 'assets/images/php.jpg' },
-    { id: 4, name: 'JavaScript', imageUrl: 'assets/images/javascript.jpg' }
-  ];
 
-  // Mock data for institutions
-  institutions = [
-    { id: 1, name: 'Institution 1', logo: 'assets/images/institution-1.png' },
-    { id: 2, name: 'Institution 2', logo: 'assets/images/institution-2.png' },
-    { id: 3, name: 'Institution 3', logo: 'assets/images/institution-3.png' },
-    { id: 4, name: 'Institution 4', logo: 'assets/images/institution-4.png' },
-    { id: 5, name: 'Institution 5', logo: 'assets/images/institution-5.png' }
-  ];
-
-  // Mock data for partners
-  partners = [
-    { id: 1, name: 'MOOC', logo: 'assets/images/mooc.png' },
-    { id: 2, name: 'Udemy', logo: 'assets/images/udemy.png' },
-    { id: 3, name: 'Coursera', logo: 'assets/images/coursera.png' },
-    { id: 4, name: 'edX', logo: 'assets/images/edx.png' }
-  ];
-
-  // Form handling methods
-  subscribeToNewsletter(email: string) {
-    console.log('Subscribing email:', email);
-    // Add API call to subscribe
-  }
-
-  login(username: string, password: string) {
-    console.log('Login attempt:', username);
-    // Add authentication logic
-  }
-
-  register(email: string, username: string, password: string) {
-    console.log('Registration attempt:', username, email);
-    // Add registration logic
-  }
 }

@@ -1,42 +1,67 @@
-<!-- Bouton de chatbot flottant qui apparaît lorsque la fenêtre de chat est fermée -->
-<div class="floating-chatbot-container" [ngClass]="{'open': isOpen, 'expanded': isExpanded}">
-  <!-- Bouton flottant -->
-  <div class="chat-toggle" *ngIf="!isOpen" (click)="toggleChat()">
-    <!-- Message d'aide au-dessus du bouton -->
-    <div class="chat-help-message" *ngIf="showHelpMessage">
-      Je suis là si vous avez des questions
+<!-- Page de chatbot en plein écran -->
+<div class="full-chatbot-container">
+  <!-- Barre latérale pour l'historique -->
+  <div class="sidebar" [ngClass]="{'collapsed': sidebarCollapsed}">
+    <!-- En-tête de la barre latérale -->
+    <div class="sidebar-header">
+      <!-- Titre qui sera masqué quand la sidebar est réduite -->
+      <div class="header-title">Conversations</div>
+      <button class="action-button" (click)="toggleSidebar()" aria-label="Réduire">
+        <i class="pi" [ngClass]="sidebarCollapsed ? 'pi-angle-right' : 'pi-angle-left'"></i>
+      </button>
     </div>
-    <div class="chat-icon">
-      <img src="pictures/chat.png">
+
+    <!-- Bouton pour nouvelle conversation -->
+    <div class="new-chat-button" (click)="startNewChat()">
+      <i class="pi pi-plus"></i>
+      <span>Nouvelle conversation</span>
+    </div>
+
+    <!-- Liste des conversations -->
+    <div class="conversation-history">
+      <div *ngFor="let convo of conversations; let i = index"
+           class="history-item"
+           [ngClass]="{'active': currentConversationIndex === i}"
+           (click)="selectConversation(i)">
+        <div class="history-content" *ngIf="!sidebarCollapsed">
+          <div class="history-title">{{ convo.title }}</div>
+          <div class="history-preview">{{ convo.preview }}</div>
+          <div class="history-date">{{ convo.date | date:'dd/MM/yyyy' }}</div>
+        </div>
+        <div class="history-icon" *ngIf="sidebarCollapsed">
+          <i class="pi pi-comments"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Fenêtre de chat -->
-  <div class="chat-window" *ngIf="isOpen">
+  <!-- Zone principale du chat -->
+  <div class="main-chat-area">
     <!-- En-tête du chatbot -->
     <div class="chat-header">
       <div class="header-left">
+        <button class="menu-button" (click)="toggleSidebar()" *ngIf="sidebarCollapsed">
+          <i class="pi pi-bars"></i>
+        </button>
         <div class="header-avatar">
           <img src="pictures/chat.png">
         </div>
         <div class="header-title">Formito</div>
       </div>
       <div class="header-actions">
-        <button class="action-button" (click)="toggleExpand()" aria-label="Agrandir/Réduire">
-          <i class="pi" [ngClass]="isExpanded ? 'pi-arrow-down-left-and-arrow-up-right-to-center' : 'pi-arrow-up-right-and-arrow-down-left-from-center'"></i>
+        <button class="action-button" (click)="clearChat()" aria-label="Effacer la conversation">
+          <i class="pi pi-trash"></i>
         </button>
-        <button class="action-button" (click)="openFullChatbot()" aria-label="Ouvrir en plein écran">
-          <i class="pi pi-external-link"></i>
-        </button>
-        <button class="action-button" (click)="toggleChat()" aria-label="Fermer">
-          <i class="pi pi-times"></i>
+        <button class="action-button" routerLink="/" aria-label="Retour à l'accueil">
+          <i class="pi pi-home"></i>
         </button>
       </div>
     </div>
 
+    <!-- Le reste du code reste identique -->
     <!-- Zone des messages -->
     <div class="chat-messages" #messagesContainer>
-      <div *ngFor="let msg of messages"
+      <div *ngFor="let msg of currentMessages"
            [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
         <div class="message-content">
           <div *ngIf="msg.sender === 'bot'" class="avatar-container">

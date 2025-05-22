@@ -20,5 +20,5 @@ import { RouterOutlet } from '@angular/router';
   ],
 })
 export class AppComponent {
-  title = 'first-ng-app';
+  title = 'CLICK2LEARN';
 }

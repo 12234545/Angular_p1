@@ -1,45 +1,83 @@
-// chatbot.component.ts
-import { Component, OnInit } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { RouterLink } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { CardModule } from 'primeng/card';
-import { AvatarModule } from 'primeng/avatar';
+// floating-chatbot.component.ts
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { AvatarModule } from 'primeng/avatar';
 import { ChatbotService } from '../../services/chatbot-service.service';
 import { Message } from '../../interfaces/message';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-chatbot',
+  selector: 'app-floating-chatbot',
   standalone: true,
   imports: [
-    ButtonModule,
-    RouterLink,
-    InputTextModule,
+    CommonModule,
     FormsModule,
-    CardModule,
-    AvatarModule,
-    CommonModule
+    ButtonModule,
+    InputTextModule,
+    AvatarModule
   ],
   templateUrl: './chatbot.component.html',
-  styleUrl: './chatbot.component.css'
+  styleUrls: ['./chatbot.component.scss']
 })
 export class ChatbotComponent implements OnInit {
+  isOpen = false;
+  isExpanded = false;
   messages: Message[] = [];
-  newMessage: string = '';
-  loading: boolean = false;
+  newMessage = '';
+  loading = false;
+  showHelpMessage = true; // Propriété pour afficher/masquer le message d'aide
+  @ViewChild('messagesContainer') messagesContainer: ElementRef | undefined;
 
-  constructor(private chatbotService: ChatbotService) {}
+  constructor(
+    private chatbotService: ChatbotService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Ajouter un message d'accueil
     this.messages.push({
       text: 'Bonjour ! Je suis Formito, votre assistant de formation et d\'orientation professionnelle. Comment puis-je vous aider aujourd\'hui ?',
       sender: 'bot',
       timestamp: new Date()
     });
+
+    // Affiche le message d'aide pendant 10 secondes, puis le masque
+    setTimeout(() => {
+      this.showHelpMessage = false;
+    }, 10000);
   }
+
+  toggleChat() {
+    // Quand on clique sur le bouton, on masque le message d'aide
+    this.showHelpMessage = false;
+    this.isOpen = !this.isOpen;
+    // Si on ferme le chat, on s'assure aussi de le réduire
+    if (!this.isOpen) {
+      this.isExpanded = false;
+    }
+    if (this.isOpen) {
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
+    }
+  }
+
+  toggleExpand() {
+    this.isExpanded = !this.isExpanded;
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100);
+  }
+
+  openFullChatbot() {
+  // Stocker temporairement les messages actuels avant de naviguer
+  if (this.messages.length > 0) {
+    localStorage.setItem('temp-chatbot-messages', JSON.stringify(this.messages));
+  }
+  this.router.navigate(['/full-chatbot']);
+}
 
   sendMessage() {
     if (!this.newMessage.trim()) return;
@@ -55,6 +93,10 @@ export class ChatbotComponent implements OnInit {
     this.newMessage = '';
     this.loading = true;
 
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 10);
+
     // Envoi de la requête à l'API
     this.chatbotService.sendMessage(messageToSend).subscribe({
       next: (response) => {
@@ -65,6 +107,9 @@ export class ChatbotComponent implements OnInit {
           timestamp: new Date()
         });
         this.loading = false;
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 10);
       },
       error: (error) => {
         console.error('Erreur lors de l\'envoi du message:', error);
@@ -74,7 +119,18 @@ export class ChatbotComponent implements OnInit {
           timestamp: new Date()
         });
         this.loading = false;
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 10);
       }
     });
   }
+
+  scrollToBottom() {
+    if (this.messagesContainer) {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
+    }
+  }
 }
+

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { ChatbotComponent } from '../chatbot/chatbot.component';
 @Component({
   selector: 'app-register',
-  imports: [ RouterLink ],
+  imports: [ RouterLink , ChatbotComponent ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

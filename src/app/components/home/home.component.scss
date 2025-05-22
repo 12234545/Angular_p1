@@ -39,7 +39,7 @@ body {
   background-color: $primary-color;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10000;
 
   .logo {
     img{
@@ -342,6 +342,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1057,4 +1058,11 @@ body {
   .courses-container {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
+}
+
+
+
+app-floating-chatbot {
+  position: relative;
+ z-index: 1000;
 }
