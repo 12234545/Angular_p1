@@ -13,7 +13,8 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   right: 30px;
   font-family: 'Roboto', sans-serif;
   transition: all 0.3s ease;
-  z-index: 100;
+  z-index: 10000; // Augmentation du z-index pour éviter les conflits
+  pointer-events: auto; // S'assurer que les événements de pointeur fonctionnent
 
   // Conteneur agrandi
   &.expanded .chat-window {
@@ -57,7 +58,8 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   box-shadow: $shadow-light;
   white-space: nowrap;
   animation: fadeInLeft 0.5s ease-out, float 3s ease-in-out infinite;
-  z-index: 1001;
+  z-index: 10001;
+  pointer-events: none; // Empêcher les clics sur le message d'aide
 
   // Petit triangle qui pointe vers le bouton
   &:after {
@@ -106,8 +108,9 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative; // Pour positionner le message d'aide
-
+  position: relative;
+  pointer-events: auto; // S'assurer que le bouton est cliquable
+  z-index: 10001;
 
   &:hover {
     transform: translateY(-3px);
@@ -117,10 +120,12 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   .chat-icon {
     color: $white;
     font-size: 24px;
+    pointer-events: none; // Empêcher les clics sur l'icône elle-même
 
     img {
       margin-top: 8px;
       scale: 0.06;
+      pointer-events: none; // Empêcher les clics sur l'image
     }
   }
 }
@@ -136,6 +141,8 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 10000;
 
   // Animation d'entrée
   animation: popup 0.4s ease-out;
@@ -177,6 +184,7 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
 
       img {
          scale: 0.03;
+         pointer-events: none;
       }
     }
 
@@ -209,6 +217,7 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
 
       i {
         font-size: 16px;
+        pointer-events: none;
       }
     }
   }
@@ -416,7 +425,7 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
 
     i {
       font-size: 16px;
+      pointer-events: none;
     }
   }
 }
-

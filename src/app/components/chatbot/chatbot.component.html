@@ -1,34 +1,34 @@
 <!-- Bouton de chatbot flottant qui apparaît lorsque la fenêtre de chat est fermée -->
-<div class="floating-chatbot-container" [ngClass]="{'open': isOpen, 'expanded': isExpanded}">
+<div class="floating-chatbot-container" [ngClass]="{'open': isOpen, 'expanded': isExpanded}" (click)="onChatClick($event)">
   <!-- Bouton flottant -->
-  <div class="chat-toggle" *ngIf="!isOpen" (click)="toggleChat()">
+  <div class="chat-toggle" *ngIf="!isOpen" (click)="toggleChat($event)">
     <!-- Message d'aide au-dessus du bouton -->
-    <div class="chat-help-message" *ngIf="showHelpMessage">
+    <div class="chat-help-message" *ngIf="showHelpMessage" (click)="$event.stopPropagation()">
       Je suis là si vous avez des questions
     </div>
     <div class="chat-icon">
-      <img src="pictures/chat.png">
+      <img src="pictures/chat.png" alt="Chat Icon">
     </div>
   </div>
 
   <!-- Fenêtre de chat -->
-  <div class="chat-window" *ngIf="isOpen">
+  <div class="chat-window" *ngIf="isOpen" (click)="onChatClick($event)">
     <!-- En-tête du chatbot -->
     <div class="chat-header">
       <div class="header-left">
         <div class="header-avatar">
-          <img src="pictures/chat.png">
+          <img src="pictures/chat.png" alt="Avatar">
         </div>
         <div class="header-title">Formito</div>
       </div>
       <div class="header-actions">
-        <button class="action-button" (click)="toggleExpand()" aria-label="Agrandir/Réduire">
+        <button class="action-button" (click)="toggleExpand($event)" aria-label="Agrandir/Réduire">
           <i class="pi" [ngClass]="isExpanded ? 'pi-arrow-down-left-and-arrow-up-right-to-center' : 'pi-arrow-up-right-and-arrow-down-left-from-center'"></i>
         </button>
-        <button class="action-button" (click)="openFullChatbot()" aria-label="Ouvrir en plein écran">
+        <button class="action-button" (click)="openFullChatbot($event)" aria-label="Ouvrir en plein écran">
           <i class="pi pi-external-link"></i>
         </button>
-        <button class="action-button" (click)="toggleChat()" aria-label="Fermer">
+        <button class="action-button" (click)="toggleChat($event)" aria-label="Fermer">
           <i class="pi pi-times"></i>
         </button>
       </div>
@@ -78,9 +78,10 @@
         <input type="text"
                [(ngModel)]="newMessage"
                placeholder="Tapez votre message ici..."
-               (keyup.enter)="sendMessage()"
+               (keyup.enter)="sendMessage($event)"
+               (click)="$event.stopPropagation()"
                class="message-input" />
-        <button class="send-button" (click)="sendMessage()" [disabled]="loading || !newMessage.trim()">
+        <button class="send-button" (click)="sendMessage($event)" [disabled]="loading || !newMessage.trim()">
           <i class="pi pi-send"></i>
         </button>
       </div>
