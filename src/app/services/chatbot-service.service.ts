@@ -10,8 +10,8 @@ import { catchError, timeout } from 'rxjs/operators';
 })
 export class ChatbotService {
 
-  private apiUrl = 'https://e5a9-35-204-244-72.ngrok-free.app/api/chat';
-  private baseUrl = 'https://e5a9-35-204-244-72.ngrok-free.app';
+  private apiUrl = 'https://c9b8-34-87-98-166.ngrok-free.app/api/chat';
+  private baseUrl = 'https://c9b8-34-87-98-166.ngrok-free.app';
 
   constructor(private http: HttpClient) { }
 
@@ -124,7 +124,7 @@ export class ChatbotService {
 
 
   isConfigured(): boolean {
-    return this.apiUrl !== 'https://e5a9-35-204-244-72.ngrok-free.app/api/chat';
+    return this.apiUrl !== 'https://c9b8-34-87-98-166.ngrok-free.app/api/chat';
   }
 
 
