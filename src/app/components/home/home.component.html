@@ -8,7 +8,7 @@
       <ul>
         <li><a routerLink="/accueil" class="active">Accueil</a></li>
         <li><a routerLink="/cours">Cours</a></li>
-        <li><a routerLink="/etablissements">Les établissements</a></li>
+        <li><a routerLink="/etablissement">Les établissements</a></li>
         <li><a routerLink="/apropos">À propos de nous</a></li>
       </ul>
     </nav>
@@ -97,26 +97,27 @@
     </div>
     <div class="courses-container">
       <!-- Utilisation du *ngFor avec un tableau de cours -->
-      <div class="course-card" *ngFor="let course of courses">
-        <div class="course-image">
-          <img [src]="course.image" alt="{{course.title}}">
-          <div class="course-level">{{course.level}}</div>
-        </div>
-        <div class="course-content">
-          <h3>{{course.title}}</h3>
-          <p>{{course.description}}</p>
-          <div class="course-footer">
-            <div class="instructor">
-              <img [src]="course.instructor.image" alt="{{course.instructor.name}}">
-              <span>{{course.instructor.name}}</span>
-            </div>
-            <div class="course-price">
-              <span class="original-price">{{course.originalPrice}}</span>
-              <span class="discount-price">{{course.discountPrice}}</span>
-            </div>
-          </div>
-        </div>
+      <!-- Dans la section courses, remplacez la div course-card par : -->
+<div class="course-card" *ngFor="let course of courses" [routerLink]="['/cours', course.id]">
+  <div class="course-image">
+    <img [src]="course.image" alt="{{course.title}}">
+    <div class="course-level">{{course.level}}</div>
+  </div>
+  <div class="course-content">
+    <h3>{{course.title}}</h3>
+    <p>{{course.description}}</p>
+    <div class="course-footer">
+      <div class="instructor">
+        <img [src]="course.instructor.image" alt="{{course.instructor.name}}">
+        <span>{{course.instructor.name}}</span>
       </div>
+      <div class="course-price">
+        <span class="original-price">{{course.originalPrice}}</span>
+        <span class="discount-price">{{course.discountPrice}}</span>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </section>
 

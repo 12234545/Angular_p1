@@ -1,0 +1,252 @@
+ <div class="about-us-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="pictures/logo3.png" alt="Logo KLIK2LEARN">
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/">Accueil</a></li>
+        <li><a routerLink="/cours">Cours</a></li>
+        <li><a routerLink="/etablissement">Les établissements</a></li>
+        <li><a routerLink="/apropos" class="active">À propos de nous</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a routerLink="/login" class="btn-login">Se connecter</a>
+      <a routerLink="/register" class="btn-register">S'inscrire</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>À propos de <span class="highlight">CLIK2LEARN</span></h1>
+        <p>Nous révolutionnons l'apprentissage en ligne avec des solutions innovantes qui connectent étudiants, formateurs et établissements dans un écosystème éducatif moderne.</p>
+        <div class="hero-stats">
+          <div class="stat-item" *ngFor="let stat of stats">
+            <div class="stat-number">{{ stat.number }}</div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="pictures/classe.JPG" alt="À propos de KLIK2LEARN">
+        <div class="floating-card">
+          <div class="card-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="card-content">
+            <h4>Notre Mission</h4>
+            <p>Rendre l'éducation accessible à tous</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="story-content">
+      <div class="story-text">
+        <h2>Notre Histoire</h2>
+        <p>Fondée en 2025, KLIK2LEARN est née d'une vision simple : transformer l'expérience d'apprentissage en ligne pour la rendre plus interactive, engageante et accessible.</p>
+        <p>Nous avons commencé avec une petite équipe de passionnés d'éducation et de technologie, déterminés à créer une plateforme qui révolutionnerait la façon dont les connaissances sont partagées et acquises.</p>
+        <p>Aujourd'hui, nous sommes fiers de servir plus de 500 000 étudiants à travers le monde, en partenariat avec plus de 150 établissements d'enseignement.</p>
+      </div>
+      <div class="story-image">
+        <img src="pictures/login.jpeg" alt="Notre histoire">
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="section-header">
+      <h2>Nos Valeurs</h2>
+      <p>Les principes qui guident notre travail quotidien</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" *ngFor="let value of values">
+        <div class="value-icon">
+          <i [class]="value.icon"></i>
+        </div>
+        <h3>{{ value.title }}</h3>
+        <p>{{ value.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="section-header">
+      <h2>Notre Équipe</h2>
+      <p>Rencontrez les experts qui rendent tout cela possible</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-member" *ngFor="let member of teamMembers">
+        <div class="member-image">
+          <img [src]="member.image" [alt]="member.name">
+          <div class="member-overlay">
+            <div class="social-links">
+              <a [href]="member.linkedin" class="social-link">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a [href]="member.twitter" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="member-info">
+          <h3>{{ member.name }}</h3>
+          <p class="role">{{ member.role }}</p>
+          <p class="description">{{ member.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <div class="mission-content">
+      <div class="mission-text">
+        <h2>Notre Mission</h2>
+        <p>Démocratiser l'accès à une éducation de qualité grâce à des technologies innovantes et une approche pédagogique centrée sur l'apprenant.</p>
+        <ul class="mission-points">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            Créer des expériences d'apprentissage interactives et engageantes
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            Faciliter la collaboration entre étudiants et formateurs
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            Offrir des outils de gestion performants aux établissements
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            Garantir l'accessibilité et l'inclusion pour tous
+          </li>
+        </ul>
+      </div>
+      <div class="mission-visual">
+        <div class="mission-card">
+          <div class="card-header">
+            <h3>Nos Objectifs 2026</h3>
+          </div>
+          <div class="objectives">
+            <div class="objective">
+              <div class="progress-bar">
+                <div class="progress" style="width: 75%"></div>
+              </div>
+              <span>1M d'étudiants</span>
+            </div>
+            <div class="objective">
+              <div class="progress-bar">
+                <div class="progress" style="width: 60%"></div>
+              </div>
+              <span>500 établissements</span>
+            </div>
+            <div class="objective">
+              <div class="progress-bar">
+                <div class="progress" style="width: 90%"></div>
+              </div>
+              <span>50 pays</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-content">
+      <div class="contact-info">
+        <h2>Contactez-nous</h2>
+        <p>Vous avez des questions ou souhaitez en savoir plus sur KLIK2LEARN ? N'hésitez pas à nous contacter.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Adresse</h4>
+              <p>123 Avenue de l'Innovation<br>75001 Paris, France</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Téléphone</h4>
+              <p>+33 1 23 45 67 89</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>contact klik2learn.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Envoyez-nous un message</h3>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Votre email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Sujet" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Votre message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-section">
+        <img src="pictures/footer.png" alt="CLICK2LEARN" class="footer-logo">
+        <div class="footer-tagline">
+          <span>FORMATION</span>
+          <span>INSTITUTIONNELLE</span>
+        </div>
+      </div>
+
+      <div class="newsletter-section">
+        <h3>Abonnez-vous pour recevoir notre newsletter.</h3>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre Email" class="email-input">
+          <button class="btn-subscribe">S'abonner</button>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Careers</a>
+        <span class="separator">|</span>
+        <a href="#">Privacy Policy</a>
+        <span class="separator">|</span>
+        <a href="#">Terms & Conditions</a>
+      </div>
+
+      <div class="copyright">
+        © 2025 Class Technologies Inc.
+      </div>
+    </div>
+  </footer>
+  <app-floating-chatbot></app-floating-chatbot>
+</div>
+
+

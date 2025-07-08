@@ -33,5 +33,25 @@ export const routes: Routes = [{
     return import('./components/chatbot/full-chatbot/full-chatbot.component').then(m => m.FullChatbotComponent);
   }
 }
-
+,
+{
+  path: 'cours/:id',
+  loadComponent: () =>{
+    return import('./components/cours/cours.component').then(m => m.CoursComponent);
+  }
+}
+,
+{
+  path: 'etablissement',
+  loadComponent: () =>{
+    return import('./components/etablissement/etablissement.component').then(m => m.EtablissementComponent);
+  }
+}
+,
+{
+  path: 'apropos',
+  loadComponent: () =>{
+    return import('./components/about-us/about-us.component').then(m => m.AboutUsComponent);
+  }
+}
 ];

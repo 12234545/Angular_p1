@@ -1,58 +1,69 @@
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ NgFor , RouterLink , ChatbotComponent],
+  imports: [ NgFor , RouterLink , ChatbotComponent, CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  title = 'CLICK2LEARN';
 
+export class HomeComponent {
+    title = 'CLICK2LEARN';
   courses = [
     {
       id: 1,
-      title: 'React - Fondamentaux et Applications Modernes',
-      description: 'Maîtrisez le framework JavaScript le plus populaire pour créer des interfaces utilisateur dynamiques et réactives.',
+      title: 'React de A à Z',
+      description: 'Apprenez React depuis les bases jusqu\'aux concepts avancés',
       image: 'pictures/course-1.png',
-      level: 'Niveau 1',
+      level: 'Débutant',
+      originalPrice: '$99.99',
+      discountPrice: '$49.99',
       instructor: {
-        name: 'Othman',
+        name: 'John Doe',
         image: 'pictures/M1.jpg'
-      },
-      originalPrice: '$100',
-      discountPrice: '$80'
+      }
     },
     {
       id: 2,
-      title: 'Angular - Développement Front-End Avancé',
-      description: 'Apprenez à créer des applications web complètes avec Angular, TypeScript et RxJS pour des projets professionnels.',
+      title: 'Angular Complete',
+      description: 'Maîtrisez Angular et créez des applications robustes',
       image: 'pictures/course-2.png',
-      level: 'Niveau 2',
+      level: 'Intermédiaire',
+      originalPrice: '$89.99',
+      discountPrice: '$39.99',
       instructor: {
-        name: 'Sarah',
-        image: 'pictures/W1.JPG'
-      },
-      originalPrice: '$120',
-      discountPrice: '$95'
+        name: 'Jane Smith',
+        image: 'pictures/M1.jpg'
+      }
     },
     {
       id: 3,
-      title: 'Python - Data Science et Machine Learning',
-      description: 'Découvrez comment exploiter la puissance de Python pour l\'analyse de données, la visualisation et l\'apprentissage automatique.',
-      image: 'pictures/course-3.png',
-      level: 'Niveau 3',
+      title: 'Vue.js Masterclass',
+      description: 'Développez des interfaces utilisateur avec Vue.js',
+      image: 'pictures/course-33.png',
+      level: 'Débutant',
+      originalPrice: '$79.99',
+      discountPrice: '$29.99',
       instructor: {
-        name: 'Mohammed',
+        name: 'Mike Johnson',
         image: 'pictures/M1.jpg'
-      },
-      originalPrice: '$150',
-      discountPrice: '$110'
+      }
     }
   ];
 
+  // Injecter le Router dans le constructeur
+  constructor(private router: Router) {}
 
+  navigateToCourse(courseId: number) {
+    // Navigation avec scroll vers le haut
+    this.router.navigate(['/cours', courseId]).then(() => {
+      // Scroll vers le haut après la navigation
+      window.scrollTo(0, 0);
+    });
+  }
 }

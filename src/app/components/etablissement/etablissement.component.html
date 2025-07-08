@@ -1,0 +1,180 @@
+<div class="etablissement-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="pictures/logo3.png" alt="Logo KLIK2LEARN">
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/">Accueil</a></li>
+        <li><a routerLink="/cours">Cours</a></li>
+        <li><a routerLink="/etablissement" class="active">Les établissements</a></li>
+        <li><a routerLink="/apropos">À propos de nous</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a routerLink="/login" class="btn-login">Se connecter</a>
+      <a routerLink="/register" class="btn-register">S'inscrire</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Découvrez nos <span class="highlight">Établissements</span> Partenaires</h1>
+      <p>Explorez notre réseau d'institutions d'excellence et trouvez l'établissement qui correspond à vos ambitions</p>
+    </div>
+  </section>
+
+  <!-- Search and Filter Section -->
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-bar">
+        <div class="search-input-container">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            placeholder="Rechercher un établissement, une spécialité..."
+            [(ngModel)]="termRecherche"
+            (input)="filtrerEtablissements()"
+            class="search-input"
+          >
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <select [(ngModel)]="filtreType" (change)="filtrerEtablissements()" class="filter-select">
+            <option value="tous">Tous les types</option>
+            <option *ngFor="let type of typesDisponibles" [value]="type">{{type}}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <select [(ngModel)]="filtreVille" (change)="filtrerEtablissements()" class="filter-select">
+            <option value="toutes">Toutes les villes</option>
+            <option *ngFor="let ville of villesDisponibles" [value]="ville">{{ville}}</option>
+          </select>
+        </div>
+
+        <button (click)="viderFiltres()" class="clear-filters-btn">
+          <i class="fas fa-times"></i>
+          Effacer les filtres
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-section">
+    <div class="results-header">
+      <h2>{{etablissementsFiltres.length}} établissement(s) trouvé(s)</h2>
+    </div>
+
+    <div class="etablissements-grid">
+      <div class="etablissement-card" *ngFor="let etablissement of etablissementsFiltres">
+        <div class="card-image">
+          <img [src]="etablissement.image" [alt]="etablissement.nom">
+          <div class="card-overlay">
+            <div class="etablissement-type">{{etablissement.type}}</div>
+            <div class="rating">
+              <span class="rating-score">{{etablissement.note}}</span>
+              <div class="stars">
+                <i
+                  *ngFor="let etoile of genererEtoiles(etablissement.note)"
+                  class="fas fa-star"
+                  [class.full]="etoile === 'full'"
+                  [class.half]="etoile === 'half'"
+                  [class.empty]="etoile === 'empty'"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header">
+            <h3>{{etablissement.nom}}</h3>
+            <div class="location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{etablissement.ville}}</span>
+            </div>
+          </div>
+
+          <p class="description">{{etablissement.description}}</p>
+
+          <div class="specialites">
+            <h4>Spécialités:</h4>
+            <div class="specialite-tags">
+              <span *ngFor="let specialite of etablissement.specialites" class="specialite-tag">
+                {{specialite}}
+              </span>
+            </div>
+          </div>
+
+          <div class="card-stats">
+            <div class="stat">
+              <i class="fas fa-users"></i>
+              <span>{{etablissement.nombreEtudiants}} étudiants</span>
+            </div>
+            <div class="accreditations">
+              <i class="fas fa-certificate"></i>
+              <span>{{etablissement.accreditations.join(', ')}}</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="btn-primary">Voir les détails</button>
+            <button class="btn-secondary">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="etablissementsFiltres.length === 0">
+      <div class="no-results-content">
+        <i class="fas fa-search"></i>
+        <h3>Aucun résultat trouvé</h3>
+        <p>Essayez de modifier vos critères de recherche ou d'effacer les filtres</p>
+        <button (click)="viderFiltres()" class="btn-primary">Effacer les filtres</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-section">
+        <img src="pictures/footer.png" alt="CLICK2LEARN" class="footer-logo">
+        <div class="footer-tagline">
+          <span>FORMATION</span>
+          <span>INSTITUTIONNELLE</span>
+        </div>
+      </div>
+
+      <div class="newsletter-section">
+        <h3>Abonnez-vous pour recevoir notre newsletter.</h3>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre Email" class="email-input">
+          <button class="btn-subscribe">S'abonner</button>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Careers</a>
+        <span class="separator">|</span>
+        <a href="#">Privacy Policy</a>
+        <span class="separator">|</span>
+        <a href="#">Terms & Conditions</a>
+      </div>
+
+      <div class="copyright">
+        © 2025 Class Technologies Inc.
+      </div>
+    </div>
+  </footer>
+   <app-floating-chatbot></app-floating-chatbot>
+</div>
