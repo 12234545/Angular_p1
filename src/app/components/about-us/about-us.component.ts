@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule, RouterModule , ChatbotComponent ],
+  imports: [CommonModule, RouterModule , ChatbotComponent , NavbarComponent],
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })

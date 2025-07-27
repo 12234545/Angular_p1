@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 interface Etablissement {
   id: number;
@@ -20,7 +21,7 @@ interface Etablissement {
 @Component({
   selector: 'app-etablissement',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule , ChatbotComponent],
+  imports: [CommonModule, FormsModule, RouterModule , ChatbotComponent , NavbarComponent],
   templateUrl: './etablissement.component.html',
   styleUrls: ['./etablissement.component.scss']
 })
@@ -28,10 +29,10 @@ export class EtablissementComponent implements OnInit {
   etablissements: Etablissement[] = [
     {
       id: 1,
-      nom: "École Nationale Supérieure d'Ingénieurs",
+      nom: "Ecole Nationale Supérieure de l'Administration",
       description: "Une institution d'excellence formant les ingénieurs de demain avec des programmes innovants et des équipements de pointe.",
       image: "pictures/etabs/1.png",
-      ville: "Paris",
+      ville: "Tanger",
       type: "Ingénierie",
       nombreEtudiants: 2500,
       specialites: ["Informatique", "Génie Civil", "Électronique"],
@@ -40,10 +41,10 @@ export class EtablissementComponent implements OnInit {
     },
     {
       id: 2,
-      nom: "Institut de Commerce International",
+      nom: " l'Ecole Nationale de Commerce et de Gestion",
       description: "École de commerce reconnue pour ses programmes MBA et ses partenariats internationaux avec les meilleures universités.",
       image: "pictures/etabs/2.png",
-      ville: "Lyon",
+      ville: "Tanger",
       type: "Commerce",
       nombreEtudiants: 1800,
       specialites: ["Marketing", "Finance", "Management"],
@@ -52,10 +53,10 @@ export class EtablissementComponent implements OnInit {
     },
     {
       id: 3,
-      nom: "Université des Sciences et Technologies",
+      nom: "Arts et Métiers campus de Rabat",
       description: "Centre d'excellence en recherche et formation scientifique, offrant des programmes de licence au doctorat.",
       image: "pictures/etabs/3.png",
-      ville: "Marseille",
+      ville: "Rabat",
       type: "Sciences",
       nombreEtudiants: 3200,
       specialites: ["Mathématiques", "Physique", "Chimie", "Biologie"],
@@ -64,10 +65,10 @@ export class EtablissementComponent implements OnInit {
     },
     {
       id: 4,
-      nom: "École Supérieure d'Art et Design",
+      nom: "Faculté des sciences et techniques de tanger",
       description: "Formation artistique et créative de haut niveau, préparant aux métiers du design, de l'art et de la communication visuelle.",
       image: "pictures/etabs/4.png",
-      ville: "Bordeaux",
+      ville: "Tanger",
       type: "Art & Design",
       nombreEtudiants: 950,
       specialites: ["Design Graphique", "Arts Plastiques", "Multimédia"],
@@ -76,10 +77,10 @@ export class EtablissementComponent implements OnInit {
     },
     {
       id: 5,
-      nom: "Institut Médical et Paramédical",
+      nom: "Faculté des sciences ibn tofail",
       description: "Formation médicale et paramédicale d'excellence, avec des équipements hospitaliers modernes et des partenariats cliniques.",
       image: "pictures/etabs/5.png",
-      ville: "Toulouse",
+      ville: "Kenitra",
       type: "Médecine",
       nombreEtudiants: 1600,
       specialites: ["Médecine", "Pharmacie", "Kinésithérapie"],

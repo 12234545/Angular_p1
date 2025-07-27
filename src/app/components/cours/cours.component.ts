@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
+import { NavbarComponent } from "../navbar/navbar.component";
 interface CourseModule {
   id: number;
   title: string;
@@ -97,7 +98,7 @@ interface Course {
 @Component({
   selector: 'app-cours',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule , ChatbotComponent ],
+  imports: [CommonModule, RouterModule, FormsModule, ChatbotComponent, NavbarComponent],
   templateUrl: './cours.component.html',
   styleUrls: ['./cours.component.scss']
 })

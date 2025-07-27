@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
 
+
 @Component({
   selector: 'app-home',
   imports: [ NgFor , RouterLink , ChatbotComponent, CommonModule, RouterModule],
