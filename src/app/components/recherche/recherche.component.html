@@ -1,0 +1,173 @@
+<div class="course-search-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="pictures/logo.png" alt="Logo KLIK2LEARN" />
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/">Accueil</a></li>
+        <li><a routerLink="/cours" class="active">Cours</a></li>
+        <li><a routerLink="/etablissement">Les établissements</a></li>
+        <li><a routerLink="/apropos">À propos de nous</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a routerLink="/login" class="btn-login">Se connecter</a>
+      <a routerLink="/register" class="btn-register">S'inscrire</a>
+    </div>
+  </header>
+
+  <!-- Hero Section with Search -->
+  <section class="hero-search">
+    <div class="hero-content">
+      <h1>Trouvez le cours parfait pour vous</h1>
+      <p>Explorez notre catalogue de cours et développez vos compétences</p>
+
+      <div class="search-form">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            placeholder="Que voulez-vous apprendre ?"
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="onSearch()"
+          />
+        </div>
+
+        <div class="filters">
+          <select [(ngModel)]="selectedCategory" (change)="onSearch()">
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+
+          <select [(ngModel)]="selectedLevel" (change)="onSearch()">
+            <option *ngFor="let level of levels" [value]="level">
+              {{ level }}
+            </option>
+          </select>
+
+          <select [(ngModel)]="selectedPrice" (change)="onSearch()">
+            <option *ngFor="let price of priceRanges" [value]="price">
+              {{ price }}
+            </option>
+          </select>
+
+          <button class="btn-search" (click)="onSearch()">
+            <i class="fas fa-search"></i>
+            Rechercher
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-section">
+    <div class="results-header">
+      <h2>Cours disponibles</h2>
+      <span class="results-count"
+        >{{ filteredCourses.length }} cours trouvés</span
+      >
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="courses-grid">
+      <div
+        class="course-card"
+        *ngFor="let course of filteredCourses"
+        [routerLink]="['/cours', course.id]"
+      >
+        <div class="course-image">
+          <img [src]="course.image" [alt]="course.title" />
+          <div class="course-level">{{ course.level }}</div>
+          <div class="course-duration">{{ course.duration }}</div>
+        </div>
+
+        <div class="course-content">
+          <h3>{{ course.title }}</h3>
+          <p class="instructor">Par {{ course.instructor }}</p>
+
+          <div class="course-rating">
+            <div class="stars">
+              <span
+                *ngFor="let star of generateStars(course.rating)"
+                [class]="'star-' + star"
+              >
+                ★
+              </span>
+            </div>
+            <span class="rating-number">{{ course.rating }}</span>
+            <span class="reviews-count">({{ course.reviews }} avis)</span>
+          </div>
+
+          <div class="course-stats">
+            <span class="students-count">
+              <i class="fas fa-users"></i>
+              {{ course.students }} étudiants
+            </span>
+          </div>
+
+          <div class="course-footer">
+            <div class="course-price">
+              <span class="current-price">{{ course.price }}€</span>
+              <span
+                class="original-price"
+                *ngIf="course.originalPrice > course.price"
+              >
+                {{ course.originalPrice }}€
+              </span>
+            </div>
+            <button class="btn-enroll">S'inscrire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="filteredCourses.length === 0">
+      <i class="fas fa-search"></i>
+      <h3>Aucun cours trouvé</h3>
+      <p>Essayez de modifier vos critères de recherche</p>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="newsletter-content">
+      <div class="newsletter-text">
+        <h3>Restez informé de nos nouveaux cours</h3>
+        <p>Recevez les dernières mises à jour et offres spéciales</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Votre adresse email" />
+        <button class="btn-subscribe">S'abonner</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-section">
+        <img src="pictures/footer.png" alt="CLICK2LEARN" class="footer-logo" />
+        <div class="footer-tagline">
+          <span>FORMATION</span>
+          <span>INSTITUTIONNELLE</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Careers</a>
+        <span class="separator">|</span>
+        <a href="#">Privacy Policy</a>
+        <span class="separator">|</span>
+        <a href="#">Terms & Conditions</a>
+      </div>
+
+      <div class="copyright">© 2025 Class Technologies Inc.</div>
+    </div>
+  </footer>
+  <app-floating-chatbot></app-floating-chatbot>
+</div>
