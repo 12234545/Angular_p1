@@ -23,11 +23,7 @@
         <span class="breadcrumb-item active">React</span>
       </nav>
 
-      <!-- Badge de catégorie -->
-      <div class="course-category-badge">
-        <span class="category-icon">⚡</span>
-        Frontend Development
-      </div>
+
 
       <!-- Titre principal -->
       <h1 class="course-title-modern">{{ course.title }}</h1>
@@ -70,18 +66,72 @@
         </div>
       </div>
 
+
       <!-- Instructeur info -->
-      <div class="instructor-preview">
-        <img [src]="course.instructor.image" [alt]="course.instructor.name" class="instructor-avatar-small">
-        <div class="instructor-details">
-          <span class="instructor-name">{{ course.instructor.name }}</span>
-          <span class="instructor-title">Expert React & Frontend</span>
-        </div>
-        <div class="instructor-rating">
-          <span class="rating-stars">★★★★★</span>
-          <span class="rating-text">4.9/5</span>
-        </div>
+      <!-- Instructeur info avec équipe -->
+<div class="instructor-preview">
+  <div class="main-instructor">
+    <img [src]="course.instructor.image" [alt]="course.instructor.name" class="instructor-avatar-small">
+    <div class="instructor-details">
+      <span class="instructor-name">{{ course.instructor.name }}</span>
+      <span class="instructor-title">Expert React & Frontend</span>
+      <span class="instructor-subtitle">Instructeur Principal</span>
+    </div>
+    <div class="instructor-rating">
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-text">4.9/5</span>
+    </div>
+  </div>
+
+  <!-- Section Équipe de Contributeurs -->
+  <div class="team-contributors">
+    <div class="team-label">Équipe de création :</div>
+    <div class="team-avatars">
+      <div class="team-member" data-tooltip="Sarah Martin - UI/UX Designer">
+        <img src="pictures/M2.JPG" alt="Sarah Martin" class="team-avatar">
+        <div class="member-role">UI/UX</div>
       </div>
+      <div class="team-member" data-tooltip="Marc Dubois - Développeur Senior">
+        <img src="pictures/M3.jpg" alt="Marc Dubois" class="team-avatar">
+        <div class="member-role">Dev</div>
+      </div>
+      <div class="team-member" data-tooltip="Julie Chen - Expert Contenu">
+        <img src="pictures/M4.jpg" alt="Julie Chen" class="team-avatar">
+        <div class="member-role">Contenu</div>
+      </div>
+      <div class="team-member" data-tooltip="Ahmed Benali - Mentor Technique">
+        <img src="pictures/W1.JPG" alt="Ahmed Benali" class="team-avatar">
+        <div class="member-role">Mentor</div>
+      </div>
+      <div class="team-member" data-tooltip="Lisa Wang - Responsable Qualité">
+        <img src="pictures/W2.jpeg" alt="Lisa Wang" class="team-avatar">
+        <div class="member-role">QA</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ce que vous obtenez - DÉPLACÉ ICI -->
+<div class="course-includes-modern-horizontal">
+  <h4>Ce que vous obtenez :</h4>
+  <div class="includes-list-horizontal">
+    <div class="include-item">
+      <span class="include-icon">📚</span>
+      <span class="include-text">Ressources exclusives</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">📱</span>
+      <span class="include-text">Accès mobile & desktop</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">🏆</span>
+      <span class="include-text">Certificat de réussite</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">💬</span>
+      <span class="include-text">Support communauté</span>
+    </div>
+  </div>
+</div>
     </div>
 
     <!-- Carte de cours moderne -->
@@ -123,29 +173,7 @@
 
 
 
-        <!-- Ce que vous obtenez -->
-        <div class="course-includes-modern">
-          <h4>Ce que vous obtenez :</h4>
-          <div class="includes-list">
 
-            <div class="include-item">
-              <span class="include-icon">📚</span>
-              <span class="include-text">Ressources exclusives</span>
-            </div>
-            <div class="include-item">
-              <span class="include-icon">📱</span>
-              <span class="include-text">Accès mobile & desktop</span>
-            </div>
-            <div class="include-item">
-              <span class="include-icon">🏆</span>
-              <span class="include-text">Certificat de réussite</span>
-            </div>
-            <div class="include-item">
-              <span class="include-icon">💬</span>
-              <span class="include-text">Support communauté</span>
-            </div>
-          </div>
-        </div>
 
         <!-- Partage social moderne -->
         <div class="social-share-modern">
