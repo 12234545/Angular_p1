@@ -2,52 +2,59 @@
   <!-- Header -->
   <app-navbar></app-navbar>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-content">
+  <!-- Hero Section with Integrated Search -->
+<section class="hero-section">
+  <div class="hero-content">
+    <!-- Titre déplacé à gauche -->
+    <div class="hero-title">
       <h1>Découvrez nos <span class="highlight">Établissements</span> Partenaires</h1>
-      <p>Explorez notre réseau d'institutions d'excellence et trouvez l'établissement qui correspond à vos ambitions</p>
     </div>
-  </section>
 
-  <!-- Search and Filter Section -->
-  <section class="search-section">
-    <div class="search-container">
-      <div class="search-bar">
+    <!-- Modern Search Container - Centré à droite -->
+    <div class="hero-search-container">
+      <!-- Main Search Bar -->
+      <div class="main-search">
         <div class="search-input-container">
           <i class="fas fa-search search-icon"></i>
           <input
             type="text"
-            placeholder="Rechercher un établissement, une spécialité..."
+            placeholder="Rechercher un établissement, une spécialité, une ville..."
             [(ngModel)]="termRecherche"
             (input)="filtrerEtablissements()"
             class="search-input"
           >
+          <button class="search-button" (click)="filtrerEtablissements()">
+            Rechercher
+          </button>
         </div>
       </div>
 
-      <div class="filters">
-        <div class="filter-group">
+      <!-- Modern Filters - Horizontaux sur la même ligne -->
+      <div class="modern-filters">
+        <div class="filter-pill">
           <select [(ngModel)]="filtreType" (change)="filtrerEtablissements()" class="filter-select">
-            <option value="tous">Tous les types</option>
+            <option value="tous">🏫 Tous les types</option>
             <option *ngFor="let type of typesDisponibles" [value]="type">{{type}}</option>
           </select>
         </div>
 
-        <div class="filter-group">
+        <div class="filter-pill">
           <select [(ngModel)]="filtreVille" (change)="filtrerEtablissements()" class="filter-select">
-            <option value="toutes">Toutes les villes</option>
+            <option value="toutes">🌍 Toutes les villes</option>
             <option *ngFor="let ville of villesDisponibles" [value]="ville">{{ville}}</option>
           </select>
         </div>
 
-        <button (click)="viderFiltres()" class="clear-filters-btn">
+        <button (click)="viderFiltres()" class="clear-filters-pill">
           <i class="fas fa-times"></i>
-          Effacer les filtres
+          Réinitialiser
         </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- Results Section -->
   <section class="results-section">
