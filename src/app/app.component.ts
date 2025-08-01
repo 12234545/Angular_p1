@@ -17,7 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
   styles: [
     `
       main {
-        Padding: 16px;
+        Padding: 0px;
       }
     `
   ],
