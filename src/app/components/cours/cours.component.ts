@@ -7,6 +7,7 @@ import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { Avatar } from 'primeng/avatar';
 import { AvatarGroup } from 'primeng/avatargroup';
+import { Router } from '@angular/router';
 
 interface CourseModule {
   id: number;
@@ -228,7 +229,7 @@ export class CoursComponent implements OnInit {
   newComment = '';
   selectedPoll = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit() {
     // Scroll vers le haut au chargement du composant
@@ -243,6 +244,10 @@ export class CoursComponent implements OnInit {
       }
     });
   }
+  startCourse(): void {
+  // Rediriger vers la page de paiement avec l'ID du cours
+  this.router.navigate(['/paiement', this.course.id]);
+}
 
   private loadCourse(courseId: string) {
     // Logique pour charger les données du cours spécifique

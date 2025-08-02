@@ -1,0 +1,252 @@
+<div class="formation-container">
+  <app-navbar></app-navbar>
+  <!-- Header de la formation -->
+  <div class="formation-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="course-info">
+          <div class="breadcrumb">
+            <span class="breadcrumb-item">Accueil</span>
+            <span class="breadcrumb-separator">→</span>
+            <span class="breadcrumb-item">Mes formations</span>
+            <span class="breadcrumb-separator">→</span>
+            <span class="breadcrumb-item active">{{ course.title }}</span>
+          </div>
+          <h1 class="course-title">{{ course.title }}</h1>
+          <div class="course-meta">
+            <div class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="m22 21-3-3"/>
+              </svg>
+              <span>{{ course.studentsCount }} étudiants</span>
+            </div>
+            <div class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <span>{{ course.duration }}</span>
+            </div>
+            <div class="meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+              </svg>
+              <span>{{ course.rating }}/5</span>
+            </div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="progress-indicator">
+            <div class="progress-circle">
+              <svg class="progress-ring" width="60" height="60">
+                <circle class="progress-ring-circle" stroke="currentColor" stroke-width="4" fill="transparent"
+                        r="26" cx="30" cy="30" [style.stroke-dasharray]="circumference"
+                        [style.stroke-dashoffset]="circumference - (progress / 100) * circumference"/>
+              </svg>
+              <span class="progress-text">{{ progress }}%</span>
+            </div>
+            <span class="progress-label">Progression</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="formation-content">
+    <div class="container">
+      <div class="content-layout">
+
+        <!-- Sidebar avec navigation -->
+        <div class="sidebar">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Contenu de la formation</h3>
+            <div class="modules-list">
+              <div class="module-item" *ngFor="let module of course.modules; let i = index"
+                   [class.active]="currentModule === i" [class.completed]="module.completed">
+                <div class="module-header" (click)="toggleModule(i)">
+                  <div class="module-info">
+                    <div class="module-icon">
+                      <svg *ngIf="module.completed" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <svg *ngIf="!module.completed" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="8,12 12,16 16,12"/>
+                      </svg>
+                    </div>
+                    <div class="module-details">
+                      <span class="module-title">{{ module.title }}</span>
+                      <span class="module-duration">{{ module.duration }}</span>
+                    </div>
+                  </div>
+                  <div class="module-toggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="lessons-list" [class.expanded]="expandedModules[i]">
+                  <div class="lesson-item" *ngFor="let lesson of module.lessons"
+                       [class.completed]="lesson.completed" [class.current]="currentLesson?.id === lesson.id"
+                       (click)="selectLesson(lesson)">
+                    <div class="lesson-icon">
+                      <svg *ngIf="lesson.type === 'video'" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"/>
+                      </svg>
+                      <svg *ngIf="lesson.type === 'text'" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                      </svg>
+                      <svg *ngIf="lesson.type === 'quiz'" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                      </svg>
+                    </div>
+                    <div class="lesson-info">
+                      <span class="lesson-title">{{ lesson.title }}</span>
+                      <span class="lesson-duration">{{ lesson.duration }}</span>
+                    </div>
+                    <div class="lesson-status">
+                      <svg *ngIf="lesson.completed" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zone de contenu principal -->
+        <div class="main-content">
+          <!-- État de chargement -->
+          <div class="welcome-section" *ngIf="!currentLesson">
+            <div class="welcome-card">
+              <div class="welcome-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              </div>
+              <h2 class="welcome-title">Bienvenue dans votre formation !</h2>
+              <p class="welcome-message">
+                Félicitations pour votre achat ! Vous avez maintenant accès à l'ensemble du contenu de la formation
+                "{{ course.title }}". Sélectionnez une leçon dans le menu de gauche pour commencer votre apprentissage.
+              </p>
+              <div class="welcome-stats">
+                <div class="stat-card">
+                  <div class="stat-number">{{ getTotalLessons() }}</div>
+                  <div class="stat-label">Leçons</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">{{ course.modules.length }}</div>
+                  <div class="stat-label">Modules</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">{{ course.duration }}</div>
+                  <div class="stat-label">Durée totale</div>
+                </div>
+              </div>
+              <button class="start-btn" (click)="startFirstLesson()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                Commencer la première leçon
+              </button>
+            </div>
+          </div>
+
+          <!-- Zone de contenu de la leçon -->
+          <div class="lesson-content" *ngIf="currentLesson">
+            <div class="lesson-header">
+              <h2 class="lesson-title">{{ currentLesson.title }}</h2>
+              <div class="lesson-meta">
+                <span class="lesson-type" [class]="currentLesson.type">
+                  <svg *ngIf="currentLesson.type === 'video'" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                  <svg *ngIf="currentLesson.type === 'text'" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                  </svg>
+                  <svg *ngIf="currentLesson.type === 'quiz'" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  </svg>
+                  {{ getLessonTypeLabel(currentLesson.type) }}
+                </span>
+                <span class="lesson-duration">{{ currentLesson.duration }}</span>
+              </div>
+            </div>
+
+            <div class="lesson-body">
+              <!-- Contenu vide pour le moment -->
+              <div class="coming-soon">
+                <div class="coming-soon-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                </div>
+                <h3>Contenu en cours de développement</h3>
+                <p>Le contenu de cette leçon sera bientôt disponible. Nous travaillons dur pour vous offrir la meilleure expérience d'apprentissage possible.</p>
+                <div class="placeholder-content">
+                  <div class="placeholder-video" *ngIf="currentLesson.type === 'video'">
+                    <div class="video-placeholder">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"/>
+                      </svg>
+                      <span>Vidéo à venir</span>
+                    </div>
+                  </div>
+                  <div class="placeholder-text" *ngIf="currentLesson.type === 'text'">
+                    <div class="text-placeholder">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                      </svg>
+                      <span>Contenu textuel à venir</span>
+                    </div>
+                  </div>
+                  <div class="placeholder-quiz" *ngIf="currentLesson.type === 'quiz'">
+                    <div class="quiz-placeholder">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                      </svg>
+                      <span>Quiz interactif à venir</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson-navigation">
+              <button class="nav-btn prev" [disabled]="!hasPreviousLesson()" (click)="goToPreviousLesson()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15,18 9,12 15,6"/>
+                </svg>
+                Précédent
+              </button>
+              <button class="nav-btn next" [disabled]="!hasNextLesson()" (click)="goToNextLesson()">
+                Suivant
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9,18 15,12 9,6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-floating-chatbot></app-floating-chatbot>
+</div>

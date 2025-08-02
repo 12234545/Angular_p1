@@ -1,0 +1,214 @@
+
+<div class="payment-container">
+  <app-navbar></app-navbar>
+  <!-- Header de la page -->
+  <div class="payment-header">
+    <div class="container">
+      <div class="header-content">
+        <button class="back-btn" (click)="goBack()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 19-7-7 7-7"/>
+            <path d="m19 12H5"/>
+          </svg>
+          Retour
+        </button>
+        <h1 class="page-title">Finaliser votre achat</h1>
+        <div class="security-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+          </svg>
+          Paiement sécurisé
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-content">
+    <div class="container">
+      <div class="payment-layout">
+
+        <!-- Colonne de gauche - Résumé de commande -->
+        <div class="order-summary">
+          <div class="summary-card">
+            <h2 class="summary-title">Résumé de votre commande</h2>
+
+            <div class="course-item">
+              <div class="course-image">
+                <img [src]="course.image" [alt]="course.title">
+                <div class="course-badge">Bestseller</div>
+              </div>
+              <div class="course-info">
+                <h3 class="course-title">{{ course.title }}</h3>
+                <p class="course-instructor">Par {{ course.instructor.name }}</p>
+                <div class="course-details">
+                  <span class="detail-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    {{ course.duration }}
+                  </span>
+                  <span class="detail-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="m22 21-3-3"/>
+                    </svg>
+                    {{ course.studentsCount }} étudiants
+                  </span>
+                  <span class="detail-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                    </svg>
+                    {{ course.rating }}/5
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="price-breakdown">
+              <div class="price-line">
+                <span>Prix original</span>
+                <span class="original-price">${{ course.originalPrice }}</span>
+              </div>
+              <div class="price-line discount-line">
+                <span>Réduction (-{{ course.discount }}%)</span>
+                <span class="discount-amount">-${{ course.originalPrice - course.price }}</span>
+              </div>
+              <hr class="divider">
+              <div class="price-line total-line">
+                <span>Total</span>
+                <span class="total-price">${{ course.price }}</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- Colonne de droite - Formulaire de paiement -->
+        <div class="payment-form-section">
+          <div class="payment-card">
+            <h2 class="form-title">Informations de paiement</h2>
+
+            <!-- Méthodes de paiement -->
+            <div class="payment-methods">
+              <h3 class="methods-title">Choisir votre méthode de paiement</h3>
+              <div class="methods-grid">
+                <div class="method-option" [class.active]="selectedMethod === 'card'" (click)="selectMethod('card')">
+                  <div class="method-icon">
+                    <i class="pi pi-credit-card" style="font-size: 1rem"></i>
+                  </div>
+                  <span>Carte bancaire</span>
+                </div>
+                <div class="method-option" [class.active]="selectedMethod === 'paypal'" (click)="selectMethod('paypal')">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106z"/>
+                    </svg>
+                  </div>
+                  <span>PayPal</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulaire carte bancaire -->
+            <form class="payment-form" *ngIf="selectedMethod === 'card'" (ngSubmit)="processPayment()">
+              <div class="form-group">
+                <label class="form-label">Numéro de carte</label>
+                <div class="input-with-icon">
+                  <input type="text" class="form-input" placeholder="1234 5678 9012 3456"
+                         [(ngModel)]="paymentForm.cardNumber" name="cardNumber" required>
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Date d'expiration</label>
+                  <input type="text" class="form-input" placeholder="MM/AA"
+                         [(ngModel)]="paymentForm.expiryDate" name="expiryDate" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-input" placeholder="123"
+                         [(ngModel)]="paymentForm.cvv" name="cvv" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Nom sur la carte</label>
+                <input type="text" class="form-input" placeholder="John Doe"
+                       [(ngModel)]="paymentForm.cardName" name="cardName" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email de confirmation</label>
+                <input type="email" class="form-input" placeholder="votre@email.com"
+                       [(ngModel)]="paymentForm.email" name="email" required>
+              </div>
+
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" [(ngModel)]="acceptTerms" name="acceptTerms" required>
+                  <span class="checkmark"></span>
+                  J'accepte les <a href="#" class="link">conditions d'utilisation</a> et la <a href="#" class="link">politique de confidentialité</a>
+                </label>
+              </div>
+
+              <button type="submit" class="confirm-payment-btn" [disabled]="!acceptTerms || isProcessing">
+                <span *ngIf="!isProcessing">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Confirmer le paiement - ${{ course.price }}
+                </span>
+                <span *ngIf="isProcessing" class="loading">
+                  <div class="spinner"></div>
+                  Traitement en cours...
+                </span>
+              </button>
+            </form>
+
+            <!-- PayPal Section -->
+            <div class="paypal-section" *ngIf="selectedMethod === 'paypal'">
+              <p class="paypal-info">Vous serez redirigé vers PayPal pour finaliser votre paiement en toute sécurité.</p>
+              <button class="paypal-btn" (click)="processPayPalPayment()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106z"/>
+                </svg>
+                Payer avec PayPal - ${{ course.price }}
+              </button>
+            </div>
+
+            <div class="security-info">
+              <div class="security-items">
+                <div class="security-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                  </svg>
+                  <span>Paiement sécurisé SSL</span>
+                </div>
+                <div class="security-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>Données cryptées</span>
+                </div>
+                <div class="security-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 12l2 2 4-4"/>
+                  </svg>
+                  <span>Conforme PCI DSS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-floating-chatbot></app-floating-chatbot>
+</div>
+

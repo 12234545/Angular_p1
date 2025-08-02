@@ -61,6 +61,23 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'paiement/:id',
+    loadComponent: () => {
+      return import('./components/paiement/paiement.component').then(
+        (m) => m.PaiementComponent
+      );
+    },
+  },
+  {
+    path: 'formation/:id',
+    loadComponent: () => {
+      return import('./components/formation/formation.component').then(
+        (m) => m.FormationComponent
+      );
+    },
+  },
+
+  {
     path: 'etablissement',
     loadComponent: () => {
       return import('./components/etablissement/etablissement.component').then(
