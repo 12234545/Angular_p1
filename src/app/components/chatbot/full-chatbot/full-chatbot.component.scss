@@ -9,6 +9,7 @@ $gray-medium: #e0e0e0;
 $shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
 $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
 
+@use 'sass:color';
 // Container principal
 .full-chatbot-container {
   display: flex;
@@ -111,7 +112,7 @@ $shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 5px rgba(73, 187, 189, 0.2);
 
   &:hover {
-    background-color: darken($primary-color, 5%);
+    background-color: color.adjust($primary-color, $lightness: -5%);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(73, 187, 189, 0.3);
   }

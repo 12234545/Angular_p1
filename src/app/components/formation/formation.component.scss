@@ -22,7 +22,7 @@ $dark-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
 .formation-header {
   background: $white;
   border-bottom: 1px solid $border-color;
-  padding: 2rem 0;
+  padding: 1rem 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
   .container {
@@ -40,111 +40,86 @@ $dark-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
     .course-info {
       flex: 1;
 
-      .breadcrumb {
+      .title-progress-container {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        font-size: 0.85rem;
-        color: $text-light;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+        gap: rem;
 
-        .breadcrumb-item {
-          &.active {
-            color: $primary-color;
+        .course-title {
+          font-size: 1.7rem;
+          font-weight: 650;
+          color: $text-dark;
+          margin: 0;
+          line-height: 1.2;
+          flex: 1;
+        }
+
+        .progress-indicator {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          flex-shrink: 0;
+
+          .progress-circle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .progress-ring {
+              transform: rotate(-90deg);
+
+              .progress-ring-circle {
+                transition: stroke-dashoffset 0.5s ease-in-out;
+                stroke: $primary-color;
+              }
+            }
+
+            .progress-text {
+              position: absolute;
+              font-size: 0.85rem;
+              font-weight: 600;
+              color: $primary-color;
+            }
+          }
+
+          .progress-label {
+            font-size: 0.9rem;
+            color: $text-light;
             font-weight: 500;
           }
         }
-
-        .breadcrumb-separator {
-          color: $border-color;
-        }
       }
 
-      .course-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin: 0 0 1rem 0;
-        line-height: 1.2;
-      }
 
-      .course-meta {
-        display: flex;
-        gap: 2rem;
-
-        .meta-item {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: $text-light;
-          font-size: 0.9rem;
-
-          svg {
-            color: $primary-color;
-            width: 16px;
-            height: 16px;
-          }
-        }
-      }
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 1.5rem;
-
-      .progress-indicator {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-
-        .progress-circle {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          .progress-ring {
-            transform: rotate(-90deg);
-
-            .progress-ring-circle {
-              transition: stroke-dashoffset 0.5s ease-in-out;
-              stroke: $primary-color;
-            }
-          }
-
-          .progress-text {
-            position: absolute;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: $primary-color;
-          }
-        }
-
-        .progress-label {
-          font-size: 0.8rem;
-          color: $text-light;
-          font-weight: 500;
-        }
-      }
+      // Supprimé .progress-indicator d'ici car maintenant dans .course-info
     }
   }
 }
 
+
+
 .formation-content {
-  padding: 2rem 0;
+  padding: 1rem 0;
 
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 0rem;
   }
 }
 
 .content-layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 350px 10fr;
   gap: 2rem;
   align-items: start;
 }

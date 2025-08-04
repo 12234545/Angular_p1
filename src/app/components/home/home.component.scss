@@ -1,3 +1,12 @@
+$secondary-color: #ff7a59;
+$primary-color: #49bbbd;
+$text-light: #666;
+$white: #ffffff;
+$light-gray: #f4f4f4;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+@use 'sass:color';
+
 .course-search-container {
   min-height: 100vh;
   background-color: #f8f9fa;
@@ -1146,7 +1155,7 @@ body {
       transition: all 0.3s ease;
 
       &:hover {
-        color: darken($primary-color, 10%);
+        color: color.adjust($primary-color, $lightness: -10%);
       }
     }
   }
@@ -1404,7 +1413,7 @@ body {
         transition: all 0.3s ease;
 
         &:hover {
-          color: darken($primary-color, 10%);
+          color: color.adjust($primary-color, $lightness: -10%);
         }
       }
     }
@@ -1450,7 +1459,6 @@ body {
     }
   }
 }
-
 
 // Footer
 .footer {
@@ -1614,7 +1622,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 }
-
 
 app-floating-chatbot {
   position: relative;

@@ -1,9 +1,10 @@
+@use 'sass:color';
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.css";
 
 
 // Variables
-$primary-color: #49BBBD;
+$primary-color: #49bbbd;
 $secondary-color: #ff7a59;
 $dark-blue: #192a56;
 $light-gray: #f8f9fa;
@@ -20,7 +21,7 @@ $shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: $text-dark;
   line-height: 1.6;
 }
@@ -69,7 +70,8 @@ body {
           font-weight: 500;
           transition: all 0.3s ease;
 
-          &:hover, &.active {
+          &:hover,
+          &.active {
             color: rgba(255, 255, 255, 0.8);
             border-bottom: 2px solid $white;
           }
@@ -82,7 +84,8 @@ body {
     display: flex;
     gap: 15px;
 
-    .btn-login, .btn-register {
+    .btn-login,
+    .btn-register {
       padding: 8px 20px;
       border-radius: 20px;
       text-decoration: none;
@@ -144,7 +147,8 @@ body {
         display: flex;
         gap: 15px;
 
-        .btn-primary, .btn-outlined {
+        .btn-primary,
+        .btn-outlined {
           padding: 12px 25px;
           border-radius: 25px;
           text-decoration: none;
@@ -348,7 +352,7 @@ body {
         transition: all 0.3s ease;
 
         &:hover {
-          background-color: darken($light-gray, 5%);
+          background-color: color.adjust($light-gray, $lightness: -5%);
         }
       }
     }
@@ -502,7 +506,7 @@ body {
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         width: 100%;
         height: 100%;
@@ -573,7 +577,7 @@ body {
       transition: all 0.3s ease;
 
       &:hover {
-        color: darken($primary-color, 10%);
+        color: color.adjust($primary-color, $lightness: -10%);
       }
     }
   }
@@ -753,7 +757,7 @@ body {
         transition: all 0.3s ease;
 
         &:hover {
-          color: darken($primary-color, 10%);
+         color: color.adjust($primary-color, $lightness: -10%);
         }
       }
     }
@@ -859,7 +863,7 @@ body {
           transition: all 0.3s ease;
 
           &:hover {
-            background-color: darken($primary-color, 10%);
+            background-color: color.adjust($primary-color, $lightness: -10%);
           }
         }
       }

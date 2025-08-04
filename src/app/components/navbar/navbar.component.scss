@@ -9,7 +9,7 @@ $white: #ffffff;
 $success-color: #10b981;
 $border-color: #e5e7eb;
 
-
+@use 'sass:color';
 // Header styles (consistent with home page)
 .header {
     display: flex;
@@ -87,8 +87,8 @@ $border-color: #e5e7eb;
         border: 2px solid $primary-color;
 
         &:hover {
-          background: darken($primary-color, 10%);
-          border-color: darken($primary-color, 10%);
+         background: color.adjust($primary-color, $lightness: -10%);
+         border-color: color.adjust($primary-color, $lightness: -10%);
         }
       }
     }

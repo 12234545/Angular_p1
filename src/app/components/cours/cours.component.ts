@@ -5,8 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { NavbarComponent } from "../navbar/navbar.component";
-import { Avatar } from 'primeng/avatar';
-import { AvatarGroup } from 'primeng/avatargroup';
+
 import { Router } from '@angular/router';
 
 interface CourseModule {
@@ -102,7 +101,7 @@ interface Course {
 @Component({
   selector: 'app-cours',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ChatbotComponent, NavbarComponent , Avatar, AvatarGroup],
+  imports: [CommonModule, RouterModule, FormsModule, ChatbotComponent, NavbarComponent ],
   templateUrl: './cours.component.html',
   styleUrls: ['./cours.component.scss']
 })
