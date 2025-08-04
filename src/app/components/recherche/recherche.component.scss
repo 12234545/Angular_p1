@@ -103,17 +103,17 @@ $shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin: 0 auto;
 
       h1 {
-        font-size: 36px; // Réduit de 48px à 36px
+        font-size: 36px;
         font-weight: 700;
         line-height: 1.2;
         margin-bottom: 15px; // Réduit de 20px à 15px
       }
 
       p {
-        font-size: 16px; // Réduit de 18px à 16px
-        margin-bottom: 25px; // Réduit de 30px à 25px
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 25px;
         color: $secondary-color;
-        font-weight: 500;
       }
     }
 
